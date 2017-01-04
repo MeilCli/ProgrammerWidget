@@ -59,11 +59,14 @@ namespace ProgrammerWidget {
 
 
         setHead(element: Element, json: any) {
-            element.addA((a) => {
-                a.href = json["url"];
-                a.addImg((img) => {
-                    img.className = "programmer-widget-image";
-                    img.src = json["profile_image_url"];
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addA((a) => {
+                    a.href = json["url"];
+                    a.addImg((img) => {
+                        img.className = "programmer-widget-image";
+                        img.src = json["profile_image_url"];
+                    });
                 });
             });
             element.addH2((h2) => {

@@ -171,11 +171,14 @@ var ProgrammerWidget;
             });
         }
         setHead(element, json) {
-            element.addA((a) => {
-                a.href = json["html_url"];
-                a.addImg((img) => {
-                    img.className = "programmer-widget-image";
-                    img.src = json["avatar_url"];
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addA((a) => {
+                    a.href = json["html_url"];
+                    a.addImg((img) => {
+                        img.className = "programmer-widget-image";
+                        img.src = json["avatar_url"];
+                    });
                 });
             });
             element.addH2((h2) => {
@@ -301,11 +304,14 @@ var ProgrammerWidget;
             });
         }
         setHead(element, json) {
-            element.addA((a) => {
-                a.href = json["url"];
-                a.addImg((img) => {
-                    img.className = "programmer-widget-image";
-                    img.src = json["profile_image_url"];
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addA((a) => {
+                    a.href = json["url"];
+                    a.addImg((img) => {
+                        img.className = "programmer-widget-image";
+                        img.src = json["profile_image_url"];
+                    });
                 });
             });
             element.addH2((h2) => {
@@ -415,11 +421,14 @@ var ProgrammerWidget;
             });
         }
         setHead(element, json) {
-            element.addA((a) => {
-                a.href = "https://teratail.com/users/" + json["user"]["display_name"];
-                a.addImg((img) => {
-                    img.className = "programmer-widget-image";
-                    img.src = json["user"]["photo"];
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addA((a) => {
+                    a.href = "https://teratail.com/users/" + json["user"]["display_name"];
+                    a.addImg((img) => {
+                        img.className = "programmer-widget-image";
+                        img.src = json["user"]["photo"];
+                    });
                 });
             });
             element.addH2((h2) => {

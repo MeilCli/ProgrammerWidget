@@ -43,11 +43,14 @@ namespace ProgrammerWidget {
         }
 
         setHead(element: Element, json: any) {
-            element.addA((a) => {
-                a.href = "https://teratail.com/users/" + json["user"]["display_name"];
-                a.addImg((img) => {
-                    img.className = "programmer-widget-image";
-                    img.src = json["user"]["photo"];
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addA((a) => {
+                    a.href = "https://teratail.com/users/" + json["user"]["display_name"];
+                    a.addImg((img) => {
+                        img.className = "programmer-widget-image";
+                        img.src = json["user"]["photo"];
+                    });
                 });
             });
             element.addH2((h2) => {
