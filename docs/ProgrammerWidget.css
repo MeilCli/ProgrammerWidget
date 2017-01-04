@@ -60,7 +60,7 @@
     font-size:14px;
 }
 
-.programmer-widget-qiita {
+.programmer-widget {
     width: 99.9%;
     max-width: 450px;
     height: 200px;
@@ -83,16 +83,6 @@
     top: 100px;
     left: 80px;
     font-weight: 500;
-}
-
-.programmer-widget-teratail {
-    width: 99.9%;
-    max-width: 450px;
-    height: 200px;
-    position: relative;
-    border-color: darkgray;
-    border-width: 1px;
-    border-style: solid;
 }
 
 .programmer-widget-paragraph-teratail-container {
@@ -126,16 +116,6 @@
 .programmer-widget-paragraph-teratail-list2 {
     display:inline-block;
     margin-left: 16px;
-}
-
-.programmer-widget-github {
-    width: 99.9%;
-    max-width: 450px;
-    height: 200px;
-    position: relative;
-    border-color: darkgray;
-    border-width: 1px;
-    border-style: solid;
 }
 
 .programmer-widget-paragraph-github:before {

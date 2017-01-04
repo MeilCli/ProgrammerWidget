@@ -27,7 +27,14 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Constant.ts" />
+    <TypeScriptCompile Include="ElementExtensions.ts" />
+    <TypeScriptCompile Include="GithubWidget.ts" />
+    <TypeScriptCompile Include="HttpClient.ts" />
     <TypeScriptCompile Include="ProgrammerWidget.ts" />
+    <TypeScriptCompile Include="QiitaWidget.ts" />
+    <TypeScriptCompile Include="TeratailWidget.ts" />
+    <TypeScriptCompile Include="Widget.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
@@ -70,8 +77,9 @@
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptModuleKind />
-    <TypeScriptOutFile />
+    <TypeScriptModuleKind>
+    </TypeScriptModuleKind>
+    <TypeScriptOutFile>ProgrammerWidget.js</TypeScriptOutFile>
     <TypeScriptOutDir />
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
