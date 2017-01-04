@@ -6,7 +6,7 @@ namespace ProgrammerWidget {
         async getAsyncWithStorage(httpClient: HttpClient, url: string) {
             var storagedTime = window.localStorage.getItem(storageTimeKey + url);
             var storagedItem = window.localStorage.getItem(storageItemKey + url);
-            if (storagedItem != null && storagedItem != undefined && new Date(storagedTime).getTime() + hour > new Date().getDate()) {
+            if (storagedItem != null && storagedItem != undefined && new Date(storagedTime).getTime() + hour > new Date().getTime()) {
                 return JSON.parse(storagedItem);
             }
 
@@ -17,7 +17,7 @@ namespace ProgrammerWidget {
             }
 
             window.localStorage.setItem(storageItemKey + url, response.content);
-            window.localStorage.setItem(storagedTime + url, new Date().toUTCString());
+            window.localStorage.setItem(storageTimeKey + url, new Date().toUTCString());
             return JSON.parse(response.content);
         }
     }

@@ -95,7 +95,7 @@ var ProgrammerWidget;
             return __awaiter(this, void 0, void 0, function* () {
                 var storagedTime = window.localStorage.getItem(ProgrammerWidget.storageTimeKey + url);
                 var storagedItem = window.localStorage.getItem(ProgrammerWidget.storageItemKey + url);
-                if (storagedItem != null && storagedItem != undefined && new Date(storagedTime).getTime() + ProgrammerWidget.hour > new Date().getDate()) {
+                if (storagedItem != null && storagedItem != undefined && new Date(storagedTime).getTime() + ProgrammerWidget.hour > new Date().getTime()) {
                     return JSON.parse(storagedItem);
                 }
                 var httpRequest = new ProgrammerWidget.HttpRequest(url);
@@ -104,7 +104,7 @@ var ProgrammerWidget;
                     return;
                 }
                 window.localStorage.setItem(ProgrammerWidget.storageItemKey + url, response.content);
-                window.localStorage.setItem(storagedTime + url, new Date().toUTCString());
+                window.localStorage.setItem(ProgrammerWidget.storageTimeKey + url, new Date().toUTCString());
                 return JSON.parse(response.content);
             });
         }
