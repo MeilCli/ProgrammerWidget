@@ -1,0 +1,154 @@
+﻿.programmer-widget-image {
+    width: 90px;
+    height: 90px;
+    margin-top: 10px;
+    margin-left: 12%;
+    border-style: solid;
+    border-color: lightblue;
+    border-width: 1px;
+    border-radius: 45px;
+}
+
+.programmer-widget-heading {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    text-align: center;
+}
+
+    .programmer-widget-heading > a {
+        text-decoration: none;
+    }
+
+.programmer-widget-logo {
+    position: absolute;
+    top: 0px;
+    right: 16px;
+    font-style: italic;
+    font-size: 24px;
+}
+
+.programmer-widget-list-container {
+    display: flex;
+    justify-content: flex-start;
+    height: 50px;
+    margin-top: 46px;
+    border-top-color: darkgray;
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+    .programmer-widget-list-container > div {
+        flex-grow: 1;
+    }
+
+.programmer-widget-list-number {
+    text-align:center;
+    color:dodgerblue;
+    font-size:18px;
+    margin-top: 8px;
+    font-weight: 800;
+}
+
+.programmer-widget-list-title {
+    text-align:center;
+    color:darkslategrey;
+    font-size:14px;
+}
+
+.programmer-widget-qiita {
+    width: 99.9%;
+    max-width: 450px;
+    height: 200px;
+    position: relative;
+    border-color: darkgray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.programmer-widget-paragraph-qiita:before {
+    content: "Top Tags";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 16px;
+}
+
+.programmer-widget-paragraph-qiita {
+    position: absolute;
+    top: 100px;
+    left: 80px;
+    font-weight: 500;
+}
+
+.programmer-widget-teratail {
+    width: 99.9%;
+    max-width: 450px;
+    height: 200px;
+    position: relative;
+    border-color: darkgray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.programmer-widget-paragraph-teratail-container {
+    position: absolute;
+    top: 100px;
+    left: 80px;
+    font-weight: 500;
+    padding-left : 0px;
+}
+
+.programmer-widget-paragraph-teratail-list1:before {
+    content: "Total Rank";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 8px;
+}
+
+.programmer-widget-paragraph-teratail-list1 {
+    display:inline-block;
+}
+
+.programmer-widget-paragraph-teratail-list2:before {
+    content: "Weekly Rank";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 8px;
+}
+
+.programmer-widget-paragraph-teratail-list2 {
+    display:inline-block;
+    margin-left: 16px;
+}
+
+.programmer-widget-github {
+    width: 99.9%;
+    max-width: 450px;
+    height: 200px;
+    position: relative;
+    border-color: darkgray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.programmer-widget-paragraph-github:before {
+    content: "Top Languages";
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 16px;
+}
+
+.programmer-widget-paragraph-github {
+    position: absolute;
+    top: 100px;
+    left: 80px;
+    font-weight: 500;
+}
