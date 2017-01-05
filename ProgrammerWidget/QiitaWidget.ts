@@ -13,7 +13,7 @@ namespace ProgrammerWidget {
             if (user == null || user == undefined) {
                 return;
             }
-            var url = "https://qiita.com/api/v1/users/" + user;
+            var url = `https://qiita.com/api/v1/users/${user}`;
             var json = await this.getAsyncWithStorage(this.httpClient, url);
             if (json == null || json == undefined) {
                 return;
@@ -27,7 +27,7 @@ namespace ProgrammerWidget {
             this.setHead(element, json);
             this.setList(element, json);
 
-            var tagsUrl = "https://qiita.com/api/v1/users/" + json["url_name"] + "/items";
+            var tagsUrl = `https://qiita.com/api/v1/users/${json["url_name"]}/items`;
             var tagsItems = await this.getAsyncWithStorage(this.httpClient, tagsUrl);
             if (tagsItems == null || tagsItems == undefined) {
                 return;
@@ -85,7 +85,7 @@ namespace ProgrammerWidget {
         setTags(element: Element, tagsCountArray: any) {
             element.addP(async (p) => {
                 p.className = "programmer-widget-paragraph-qiita";
-                p.innerText = tagsCountArray[0].name + ", " + tagsCountArray[1].name + ", " + tagsCountArray[2].name;
+                p.innerText = `${tagsCountArray[0].name}, ${tagsCountArray[1].name}, ${tagsCountArray[2].name}`;
             });
         }
 

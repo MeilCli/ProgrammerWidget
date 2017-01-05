@@ -13,7 +13,7 @@ namespace ProgrammerWidget {
             if (user == null || user == undefined) {
                 return;
             }
-            var url = "https://teratail.com/api/v1/users/" + user;
+            var url = `https://teratail.com/api/v1/users/${user}`;
             var json = await this.getAsyncWithStorage(this.httpClient, url);
             if (json == null || json == undefined) {
                 return;
@@ -27,15 +27,15 @@ namespace ProgrammerWidget {
             this.setHead(element, json);
             this.setRank(element, json);
 
-            var followingUrl = "https://teratail.com/api/v1/users/" + json["user"]["display_name"] + "/followings";
+            var followingUrl = `https://teratail.com/api/v1/users/${json["user"]["display_name"]}/followings`;
             var followingItems = await this.getAsyncWithStorage(this.httpClient, followingUrl);
             var following = followingItems != null && followingItems != undefined ? followingItems["meta"]["hit_num"] : "?";
 
-            var followerUrl = "https://teratail.com/api/v1/users/" + json["user"]["display_name"] + "/followers";
+            var followerUrl = `https://teratail.com/api/v1/users/${json["user"]["display_name"]}/followers`;
             var followerItems = await this.getAsyncWithStorage(this.httpClient, followerUrl);
             var follower = followerItems != null && followerItems != undefined ? followerItems["meta"]["hit_num"] : "?";
 
-            var answerUrl = "https://teratail.com/api/v1/users/" + json["user"]["display_name"] + "/replies";
+            var answerUrl = `https://teratail.com/api/v1/users/${json["user"]["display_name"]}/replies`;
             var answerItems = await this.getAsyncWithStorage(this.httpClient, answerUrl);
             var answer = answerItems != null && answerItems != undefined ? answerItems["meta"]["hit_num"] : "?";
 
@@ -46,7 +46,7 @@ namespace ProgrammerWidget {
             element.addDiv((div) => {
                 div.className = "programmer-widget-image-container";
                 div.addA((a) => {
-                    a.href = "https://teratail.com/users/" + json["user"]["display_name"];
+                    a.href = `https://teratail.com/users/${json["user"]["display_name"]}`;
                     a.addImg((img) => {
                         img.className = "programmer-widget-image";
                         img.src = json["user"]["photo"];
@@ -56,7 +56,7 @@ namespace ProgrammerWidget {
             element.addH2((h2) => {
                 h2.className = "programmer-widget-heading";
                 h2.addA((a) => {
-                    a.href = "https://teratail.com/users/" + json["user"]["display_name"];
+                    a.href = `https://teratail.com/users/${json["user"]["display_name"]}`;
                     a.text = json["user"]["display_name"];
                 });
             });

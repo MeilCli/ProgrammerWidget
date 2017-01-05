@@ -13,7 +13,7 @@ namespace ProgrammerWidget {
             if (user == null || user == undefined) {
                 return;
             }
-            var url = "https://api.github.com/users/" + user;
+            var url = `https://api.github.com/users/${user}`;
             var json = await this.getAsyncWithStorage(this.httpClient, url);
             if (json == null || json == undefined) {
                 return;
@@ -27,14 +27,14 @@ namespace ProgrammerWidget {
             this.setHead(element, json);
             this.setList(element, json);
 
-            var repoUrl = "https://api.github.com/users/" + json["login"] + "/repos?sort=updated&direction=desc";
+            var repoUrl = `https://api.github.com/users/${json["login"]}/repos?sort=updated&direction=desc`;
             var repoItems = await this.getAsyncWithStorage(this.httpClient, repoUrl);
             if (repoItems == null || repoItems == undefined) {
                 return;
             }
             var langCountMap = new Map<string, number>();
             for (var i = 0; i < repoItems.length && i < 10; i++) {
-                var langUrl = "https://api.github.com/repos/" + repoItems[i]["full_name"] + "/languages";
+                var langUrl = `https://api.github.com/repos/${repoItems[i]["full_name"]}/languages`;
                 var langItems = await this.getAsyncWithStorage(this.httpClient, langUrl);
                 if (langItems == null || langItems == undefined) {
                     break;
@@ -86,7 +86,7 @@ namespace ProgrammerWidget {
         setLang(element: Element, langCountArray: any) {
             element.addP(async (p) => {
                 p.className = "programmer-widget-paragraph-github";
-                p.innerText = langCountArray[0].name + ", " + langCountArray[1].name + ", " + langCountArray[2].name;
+                p.innerText = `${langCountArray[0].name}, ${langCountArray[1].name}, ${langCountArray[2].name}`;
             });
         }
 

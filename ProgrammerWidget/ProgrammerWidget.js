@@ -93,8 +93,8 @@ var ProgrammerWidget;
     class Widget {
         getAsyncWithStorage(httpClient, url) {
             return __awaiter(this, void 0, void 0, function* () {
-                var storagedTime = window.localStorage.getItem(ProgrammerWidget.storageTimeKey + url);
-                var storagedItem = window.localStorage.getItem(ProgrammerWidget.storageItemKey + url);
+                var storagedTime = window.localStorage.getItem(`${ProgrammerWidget.storageTimeKey}${url}`);
+                var storagedItem = window.localStorage.getItem(`${ProgrammerWidget.storageItemKey}${url}`);
                 if (storagedItem != null && storagedItem != undefined && new Date(storagedTime).getTime() + ProgrammerWidget.hour > new Date().getTime()) {
                     return JSON.parse(storagedItem);
                 }
@@ -103,8 +103,8 @@ var ProgrammerWidget;
                 if (response.status != 200) {
                     return;
                 }
-                window.localStorage.setItem(ProgrammerWidget.storageItemKey + url, response.content);
-                window.localStorage.setItem(ProgrammerWidget.storageTimeKey + url, new Date().toUTCString());
+                window.localStorage.setItem(`${ProgrammerWidget.storageItemKey}${url}`, response.content);
+                window.localStorage.setItem(`${ProgrammerWidget.storageTimeKey}${url}`, new Date().toUTCString());
                 return JSON.parse(response.content);
             });
         }
@@ -128,7 +128,7 @@ var ProgrammerWidget;
                 if (user == null || user == undefined) {
                     return;
                 }
-                var url = "https://api.github.com/users/" + user;
+                var url = `https://api.github.com/users/${user}`;
                 var json = yield this.getAsyncWithStorage(this.httpClient, url);
                 if (json == null || json == undefined) {
                     return;
@@ -139,14 +139,14 @@ var ProgrammerWidget;
                 element = div;
                 this.setHead(element, json);
                 this.setList(element, json);
-                var repoUrl = "https://api.github.com/users/" + json["login"] + "/repos?sort=updated&direction=desc";
+                var repoUrl = `https://api.github.com/users/${json["login"]}/repos?sort=updated&direction=desc`;
                 var repoItems = yield this.getAsyncWithStorage(this.httpClient, repoUrl);
                 if (repoItems == null || repoItems == undefined) {
                     return;
                 }
                 var langCountMap = new Map();
                 for (var i = 0; i < repoItems.length && i < 10; i++) {
-                    var langUrl = "https://api.github.com/repos/" + repoItems[i]["full_name"] + "/languages";
+                    var langUrl = `https://api.github.com/repos/${repoItems[i]["full_name"]}/languages`;
                     var langItems = yield this.getAsyncWithStorage(this.httpClient, langUrl);
                     if (langItems == null || langItems == undefined) {
                         break;
@@ -196,7 +196,7 @@ var ProgrammerWidget;
         setLang(element, langCountArray) {
             element.addP((p) => __awaiter(this, void 0, void 0, function* () {
                 p.className = "programmer-widget-paragraph-github";
-                p.innerText = langCountArray[0].name + ", " + langCountArray[1].name + ", " + langCountArray[2].name;
+                p.innerText = `${langCountArray[0].name}, ${langCountArray[1].name}, ${langCountArray[2].name}`;
             }));
         }
         setList(element, json) {
@@ -264,7 +264,7 @@ var ProgrammerWidget;
                 if (user == null || user == undefined) {
                     return;
                 }
-                var url = "https://qiita.com/api/v1/users/" + user;
+                var url = `https://qiita.com/api/v1/users/${user}`;
                 var json = yield this.getAsyncWithStorage(this.httpClient, url);
                 if (json == null || json == undefined) {
                     return;
@@ -275,7 +275,7 @@ var ProgrammerWidget;
                 element = div;
                 this.setHead(element, json);
                 this.setList(element, json);
-                var tagsUrl = "https://qiita.com/api/v1/users/" + json["url_name"] + "/items";
+                var tagsUrl = `https://qiita.com/api/v1/users/${json["url_name"]}/items`;
                 var tagsItems = yield this.getAsyncWithStorage(this.httpClient, tagsUrl);
                 if (tagsItems == null || tagsItems == undefined) {
                     return;
@@ -329,7 +329,7 @@ var ProgrammerWidget;
         setTags(element, tagsCountArray) {
             element.addP((p) => __awaiter(this, void 0, void 0, function* () {
                 p.className = "programmer-widget-paragraph-qiita";
-                p.innerText = tagsCountArray[0].name + ", " + tagsCountArray[1].name + ", " + tagsCountArray[2].name;
+                p.innerText = `${tagsCountArray[0].name}, ${tagsCountArray[1].name}, ${tagsCountArray[2].name}`;
             }));
         }
         setList(element, json) {
@@ -397,7 +397,7 @@ var ProgrammerWidget;
                 if (user == null || user == undefined) {
                     return;
                 }
-                var url = "https://teratail.com/api/v1/users/" + user;
+                var url = `https://teratail.com/api/v1/users/${user}`;
                 var json = yield this.getAsyncWithStorage(this.httpClient, url);
                 if (json == null || json == undefined) {
                     return;
@@ -408,13 +408,13 @@ var ProgrammerWidget;
                 element = div;
                 this.setHead(element, json);
                 this.setRank(element, json);
-                var followingUrl = "https://teratail.com/api/v1/users/" + json["user"]["display_name"] + "/followings";
+                var followingUrl = `https://teratail.com/api/v1/users/${json["user"]["display_name"]}/followings`;
                 var followingItems = yield this.getAsyncWithStorage(this.httpClient, followingUrl);
                 var following = followingItems != null && followingItems != undefined ? followingItems["meta"]["hit_num"] : "?";
-                var followerUrl = "https://teratail.com/api/v1/users/" + json["user"]["display_name"] + "/followers";
+                var followerUrl = `https://teratail.com/api/v1/users/${json["user"]["display_name"]}/followers`;
                 var followerItems = yield this.getAsyncWithStorage(this.httpClient, followerUrl);
                 var follower = followerItems != null && followerItems != undefined ? followerItems["meta"]["hit_num"] : "?";
-                var answerUrl = "https://teratail.com/api/v1/users/" + json["user"]["display_name"] + "/replies";
+                var answerUrl = `https://teratail.com/api/v1/users/${json["user"]["display_name"]}/replies`;
                 var answerItems = yield this.getAsyncWithStorage(this.httpClient, answerUrl);
                 var answer = answerItems != null && answerItems != undefined ? answerItems["meta"]["hit_num"] : "?";
                 this.setList(element, json, following, follower, answer);
@@ -424,7 +424,7 @@ var ProgrammerWidget;
             element.addDiv((div) => {
                 div.className = "programmer-widget-image-container";
                 div.addA((a) => {
-                    a.href = "https://teratail.com/users/" + json["user"]["display_name"];
+                    a.href = `https://teratail.com/users/${json["user"]["display_name"]}`;
                     a.addImg((img) => {
                         img.className = "programmer-widget-image";
                         img.src = json["user"]["photo"];
@@ -434,7 +434,7 @@ var ProgrammerWidget;
             element.addH2((h2) => {
                 h2.className = "programmer-widget-heading";
                 h2.addA((a) => {
-                    a.href = "https://teratail.com/users/" + json["user"]["display_name"];
+                    a.href = `https://teratail.com/users/${json["user"]["display_name"]}`;
                     a.text = json["user"]["display_name"];
                 });
             });
