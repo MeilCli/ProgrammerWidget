@@ -5,6 +5,30 @@
 
 namespace ProgrammerWidget {
 
+    interface QiitaUser {
+        url_name: string;
+        profile_image_url: string;
+        url: string;
+        name: string;
+        following_users: number;
+        followers: number;
+        items: number;
+        contribution: number;
+    }
+
+    interface QiitaItem {
+        tags: Array<QiitaTag>;
+    }
+
+    interface QiitaTag {
+        name: string;
+    }
+
+    interface Tag {
+        name: string;
+        count: number;
+    }
+
     export class QiitaWidget extends Widget {
         httpClient = new HttpClient();
 
@@ -14,8 +38,8 @@ namespace ProgrammerWidget {
                 return;
             }
             var url = `https://qiita.com/api/v1/users/${user}`;
-            var json = await this.getAsyncWithStorage(this.httpClient, url);
-            if (json == null || json == undefined) {
+            var qiitaUser: QiitaUser = await this.getAsyncWithStorage(this.httpClient, url);
+            if (qiitaUser == null || qiitaUser == undefined) {
                 return;
             }
 
@@ -24,11 +48,11 @@ namespace ProgrammerWidget {
             element.appendChild(div);
             element = div;
 
-            this.setHead(element, json);
-            this.setList(element, json);
+            this.setHead(element, qiitaUser);
+            this.setList(element, qiitaUser);
 
-            var tagsUrl = `https://qiita.com/api/v1/users/${json["url_name"]}/items`;
-            var tagsItems = await this.getAsyncWithStorage(this.httpClient, tagsUrl);
+            var tagsUrl = `https://qiita.com/api/v1/users/${qiitaUser.url_name}/items`;
+            var tagsItems: Array<QiitaItem> = await this.getAsyncWithStorage(this.httpClient, tagsUrl);
             if (tagsItems == null || tagsItems == undefined) {
                 return;
             }
@@ -43,7 +67,7 @@ namespace ProgrammerWidget {
                     tagsCountMap.set(tag, tagsCountMap.get(tag) + 1);
                 }
             }
-            var tagsCountArray = new Array();
+            var tagsCountArray = new Array<Tag>();
             var tagsCountIterator = tagsCountMap.entries();
             for (var i = 0; i < tagsCountMap.size; i++) {
                 var entry = tagsCountIterator.next().value;
@@ -58,22 +82,22 @@ namespace ProgrammerWidget {
 
 
 
-        setHead(element: Element, json: any) {
+        setHead(element: Element, qiitaUser: QiitaUser) {
             element.addDiv((div) => {
                 div.className = "programmer-widget-image-container";
                 div.addA((a) => {
-                    a.href = json["url"];
+                    a.href = qiitaUser.url;
                     a.addImg((img) => {
                         img.className = "programmer-widget-image";
-                        img.src = json["profile_image_url"];
+                        img.src = qiitaUser.profile_image_url;
                     });
                 });
             });
             element.addH2((h2) => {
                 h2.className = "programmer-widget-heading";
                 h2.addA((a) => {
-                    a.href = json["url"];
-                    a.text = json["name"];
+                    a.href = qiitaUser.url;
+                    a.text = qiitaUser.name;
                 });
             });
             element.addH2((h2) => {
@@ -82,20 +106,20 @@ namespace ProgrammerWidget {
             });
         }
 
-        setTags(element: Element, tagsCountArray: any) {
-            element.addP(async (p) => {
+        setTags(element: Element, tagsCountArray: Array<Tag>) {
+            element.addP((p) => {
                 p.className = "programmer-widget-paragraph-qiita";
-                p.innerText = `${tagsCountArray[0].name}, ${tagsCountArray[1].name}, ${tagsCountArray[2].name}`;
+                p.innerText = tagsCountArray.slice(0, 3).map((tag, index, array) => tag.name).join(", ");
             });
         }
 
-        setList(element: Element, json: any) {
+        setList(element: Element, qiitaUser: QiitaUser) {
             element.addDiv((container) => {
                 container.className = "programmer-widget-list-container";
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["following_users"];
+                        divNumber.innerHTML = qiitaUser.following_users.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -105,7 +129,7 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["followers"];
+                        divNumber.innerHTML = qiitaUser.followers.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -115,7 +139,7 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["items"];
+                        divNumber.innerHTML = qiitaUser.items.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -125,7 +149,7 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["contribution"];
+                        divNumber.innerHTML = qiitaUser.contribution.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";

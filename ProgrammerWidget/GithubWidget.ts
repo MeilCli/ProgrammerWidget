@@ -5,6 +5,26 @@
 
 namespace ProgrammerWidget {
 
+    interface GithubUser {
+        login: string;
+        html_url: string;
+        avatar_url: string;
+        name: string;
+        following: number;
+        followers: number;
+        public_repos: number;
+        public_gists: number;
+    }
+
+    interface GithubRepository {
+        full_name: string;
+    }
+
+    interface Lang {
+        name: string;
+        size: number;
+    }
+
     export class GithubWidget extends Widget {
         httpClient = new HttpClient();
 
@@ -14,8 +34,8 @@ namespace ProgrammerWidget {
                 return;
             }
             var url = `https://api.github.com/users/${user}`;
-            var json = await this.getAsyncWithStorage(this.httpClient, url);
-            if (json == null || json == undefined) {
+            var githubUser: GithubUser = await this.getAsyncWithStorage(this.httpClient, url);
+            if (githubUser == null || githubUser == undefined) {
                 return;
             }
 
@@ -24,57 +44,57 @@ namespace ProgrammerWidget {
             element.appendChild(div);
             element = div;
 
-            this.setHead(element, json);
-            this.setList(element, json);
+            this.setHead(element, githubUser);
+            this.setList(element, githubUser);
 
-            var repoUrl = `https://api.github.com/users/${json["login"]}/repos?sort=updated&direction=desc`;
-            var repoItems = await this.getAsyncWithStorage(this.httpClient, repoUrl);
+            var repoUrl = `https://api.github.com/users/${githubUser.login}/repos?sort=updated&direction=desc`;
+            var repoItems: Array<GithubRepository> = await this.getAsyncWithStorage(this.httpClient, repoUrl);
             if (repoItems == null || repoItems == undefined) {
                 return;
             }
-            var langCountMap = new Map<string, number>();
+            var langSizeMap = new Map<string, number>();
             for (var i = 0; i < repoItems.length && i < 10; i++) {
-                var langUrl = `https://api.github.com/repos/${repoItems[i]["full_name"]}/languages`;
+                var langUrl = `https://api.github.com/repos/${repoItems[i].full_name}/languages`;
                 var langItems = await this.getAsyncWithStorage(this.httpClient, langUrl);
                 if (langItems == null || langItems == undefined) {
                     break;
                 }
                 for (var key in langItems) {
-                    if (langCountMap.has(key) == false) {
-                        langCountMap.set(key, 0);
+                    if (langSizeMap.has(key) == false) {
+                        langSizeMap.set(key, 0);
                     }
-                    langCountMap.set(key, langCountMap.get(key) + langItems[key]);
+                    langSizeMap.set(key, langSizeMap.get(key) + langItems[key]);
                 }
             }
-            var langCountArray = new Array();
-            var langCountIterator = langCountMap.entries();
-            for (var i = 0; i < langCountMap.size; i++) {
-                var entry = langCountIterator.next().value;
-                langCountArray[i] = { name: entry[0], count: entry[1] };
+            var langSizeArray = new Array<Lang>();
+            var langSizeIterator = langSizeMap.entries();
+            for (var i = 0; i < langSizeMap.size; i++) {
+                var entry = langSizeIterator.next().value;
+                langSizeArray[i] = { name: entry[0], size: entry[1] };
             }
-            langCountArray.sort((a, b) => {
-                return a.count > b.count ? -1 : a.count < b.count ? 1 : 0;
+            langSizeArray.sort((a, b) => {
+                return a.size > b.size ? -1 : a.size < b.size ? 1 : 0;
             });
 
-            this.setLang(element, langCountArray);
+            this.setLang(element, langSizeArray);
         }
 
-        setHead(element: Element, json: any) {
+        setHead(element: Element, githubUser: GithubUser) {
             element.addDiv((div) => {
                 div.className = "programmer-widget-image-container";
                 div.addA((a) => {
-                    a.href = json["html_url"];
+                    a.href = githubUser.html_url;
                     a.addImg((img) => {
                         img.className = "programmer-widget-image";
-                        img.src = json["avatar_url"];
+                        img.src = githubUser.avatar_url;
                     });
                 });
             });
             element.addH2((h2) => {
                 h2.className = "programmer-widget-heading";
                 h2.addA((a) => {
-                    a.href = json["html_url"];
-                    a.text = json["name"];
+                    a.href = githubUser.html_url;
+                    a.text = githubUser.name;
                 });
             });
             element.addH2((h2) => {
@@ -83,20 +103,20 @@ namespace ProgrammerWidget {
             });
         }
 
-        setLang(element: Element, langCountArray: any) {
-            element.addP(async (p) => {
+        setLang(element: Element, langSizeArray: Array<Lang>) {
+            element.addP((p) => {
                 p.className = "programmer-widget-paragraph-github";
-                p.innerText = `${langCountArray[0].name}, ${langCountArray[1].name}, ${langCountArray[2].name}`;
+                p.innerText = langSizeArray.slice(0, 3).map((lang, index, array) => lang.name).join(", ");
             });
         }
 
-        setList(element: Element, json: any) {
+        setList(element: Element, githubUser: GithubUser) {
             element.addDiv((container) => {
                 container.className = "programmer-widget-list-container";
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["following"];
+                        divNumber.innerHTML = githubUser.following.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -106,7 +126,7 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["followers"];
+                        divNumber.innerHTML = githubUser.followers.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -116,7 +136,7 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["public_repos"];
+                        divNumber.innerHTML = githubUser.public_repos.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -126,7 +146,7 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json["public_gists"];
+                        divNumber.innerHTML = githubUser.public_gists.toString();
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
