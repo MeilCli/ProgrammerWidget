@@ -6,7 +6,7 @@
 /// <reference path="./TeratailWidget.ts" />
 /// <reference path="./GithubWidget.ts" />
 
-window.onload = () => {
+window.addEventListener("load", () => {
     {
         var qiitaElements = document.getElementsByClassName(ProgrammerWidget.qiitaClass);
         if (qiitaElements.length > 0) {
@@ -37,4 +37,4 @@ window.onload = () => {
             }
         }
     }
-};
+});
