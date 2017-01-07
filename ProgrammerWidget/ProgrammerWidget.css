@@ -41,6 +41,7 @@
 .programmer-widget-list-container {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     height: 50px;
     border-top-color: darkgray;
     border-top-width: 1px;
@@ -55,7 +56,6 @@
     text-align: center;
     color: dodgerblue;
     font-size: 18px;
-    margin-top: 8px;
     font-weight: 800;
 }
 
