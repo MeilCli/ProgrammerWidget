@@ -53,6 +53,7 @@ namespace ProgrammerWidget {
             element = div;
 
             this.setHead(element, teratailUserResponse);
+            this.setContent(element, teratailUserResponse);
             this.setRank(element, teratailUserResponse);
 
             var followingUrl = `https://teratail.com/api/v1/users/${teratailUserResponse.user.display_name}/followings`;
@@ -72,25 +73,30 @@ namespace ProgrammerWidget {
 
         setHead(element: Element, teratailUserResponse: TeratailUserResponse) {
             element.addDiv((div) => {
-                div.className = "programmer-widget-image-container";
+                div.className = "programmer-widget-head-container";
+                div.addP((p) => {
+                    p.className = "programmer-widget-logo";
+                    p.innerText = "Teratail";
+                });
                 div.addA((a) => {
+                    a.className = "programmer-widget-follow";
                     a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}`;
-                    a.addImg((img) => {
-                        img.className = "programmer-widget-image";
-                        img.src = teratailUserResponse.user.photo;
-                    });
+                    a.innerText = `Follow @${teratailUserResponse.user.display_name}`;
                 });
             });
+        }
+
+        setContent(element: Element, teratailUserResponse: TeratailUserResponse) {
             element.addH2((h2) => {
                 h2.className = "programmer-widget-heading";
-                h2.addA((a) => {
-                    a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}`;
-                    a.text = teratailUserResponse.user.display_name;
-                });
+                h2.innerText = teratailUserResponse.user.display_name;
             });
-            element.addH2((h2) => {
-                h2.className = "programmer-widget-logo";
-                h2.innerText = "Teratail";
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addImg((img) => {
+                    img.className = "programmer-widget-image";
+                    img.src = teratailUserResponse.user.photo;
+                });
             });
         }
 
@@ -108,13 +114,16 @@ namespace ProgrammerWidget {
             });
         }
 
-        setList(element: Element, json: TeratailUserResponse, following: string, follower: string, answer: string) {
+        setList(element: Element, teratailUserResponse: TeratailUserResponse, following: string, follower: string, answer: string) {
             element.addDiv((container) => {
                 container.className = "programmer-widget-list-container";
                 container.addDiv((div) => {
-                    div.addDiv(async (divNumber) => {
+                    div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = following;
+                        divNumber.addA((a) => {
+                            a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}/connections`;
+                            a.text = following;
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -122,9 +131,12 @@ namespace ProgrammerWidget {
                     });
                 });
                 container.addDiv((div) => {
-                    div.addDiv(async (divNumber) => {
+                    div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = follower;
+                        divNumber.addA((a) => {
+                            a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}/connections`;
+                            a.text = follower;
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -132,9 +144,12 @@ namespace ProgrammerWidget {
                     });
                 });
                 container.addDiv((div) => {
-                    div.addDiv(async (divNumber) => {
+                    div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = answer;
+                        divNumber.addA((a) => {
+                            a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}#reply`;
+                            a.text = answer;
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -144,7 +159,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = json.user.score.toString();
+                        divNumber.addA((a) => {
+                            a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}#score`;
+                            a.text = teratailUserResponse.user.score.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";

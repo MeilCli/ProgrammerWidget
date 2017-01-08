@@ -49,6 +49,7 @@ namespace ProgrammerWidget {
             element = div;
 
             this.setHead(element, qiitaUser);
+            this.setContent(element, qiitaUser);
             this.setList(element, qiitaUser);
 
             var tagsUrl = `https://qiita.com/api/v1/users/${qiitaUser.url_name}/items`;
@@ -80,30 +81,33 @@ namespace ProgrammerWidget {
             this.setTags(element, tagsCountArray);
         }
 
-
-
         setHead(element: Element, qiitaUser: QiitaUser) {
             element.addDiv((div) => {
-                div.className = "programmer-widget-image-container";
+                div.className = "programmer-widget-head-container";
+                div.addP((p) => {
+                    p.className = "programmer-widget-logo";
+                    p.innerText = "Qiita";
+                });
                 div.addA((a) => {
+                    a.className = "programmer-widget-follow";
                     a.href = qiitaUser.url;
-                    a.addImg((img) => {
-                        img.className = "programmer-widget-image";
-                        img.src = qiitaUser.profile_image_url;
-                    });
+                    a.innerText = `Follow @${qiitaUser.url_name}`;
                 });
             });
+        }
+
+        setContent(element: Element, qiitaUser: QiitaUser) {
             element.addH2((h2) => {
                 h2.className = "programmer-widget-heading";
-                h2.addA((a) => {
-                    a.href = qiitaUser.url;
-                    a.text = qiitaUser.name;
+                h2.innerText = qiitaUser.name;
+            });
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addImg((img) => {
+                    img.className = "programmer-widget-image";
+                    img.src = qiitaUser.profile_image_url;
                 });
-            });
-            element.addH2((h2) => {
-                h2.className = "programmer-widget-logo";
-                h2.innerText = "Qiita";
-            });
+            });            
         }
 
         setTags(element: Element, tagsCountArray: Array<Tag>) {
@@ -119,7 +123,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = qiitaUser.following_users.toString();
+                        divNumber.addA((a) => {
+                            a.href = `${qiitaUser.url}/following_users`;
+                            a.text = qiitaUser.following_users.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -129,7 +136,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = qiitaUser.followers.toString();
+                        divNumber.addA((a) => {
+                            a.href = `${qiitaUser.url}/followers`;
+                            a.text = qiitaUser.followers.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -139,7 +149,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = qiitaUser.items.toString();
+                        divNumber.addA((a) => {
+                            a.href = `${qiitaUser.url}/items`;
+                            a.text = qiitaUser.items.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -149,7 +162,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = qiitaUser.contribution.toString();
+                        divNumber.addA((a) => {
+                            a.href = `${qiitaUser.url}/contributions`;
+                            a.text = qiitaUser.contribution.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";

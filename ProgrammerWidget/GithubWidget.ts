@@ -45,6 +45,7 @@ namespace ProgrammerWidget {
             element = div;
 
             this.setHead(element, githubUser);
+            this.setContent(element, githubUser);
             this.setList(element, githubUser);
 
             var repoUrl = `https://api.github.com/users/${githubUser.login}/repos?sort=updated&direction=desc`;
@@ -81,25 +82,30 @@ namespace ProgrammerWidget {
 
         setHead(element: Element, githubUser: GithubUser) {
             element.addDiv((div) => {
-                div.className = "programmer-widget-image-container";
+                div.className = "programmer-widget-head-container";
+                div.addP((p) => {
+                    p.className = "programmer-widget-logo";
+                    p.innerText = "Github";
+                });
                 div.addA((a) => {
+                    a.className = "programmer-widget-follow";
                     a.href = githubUser.html_url;
-                    a.addImg((img) => {
-                        img.className = "programmer-widget-image";
-                        img.src = githubUser.avatar_url;
-                    });
+                    a.innerText = `Follow @${githubUser.login}`;
                 });
             });
+        }
+
+        setContent(element: Element, githubUser: GithubUser) {
             element.addH2((h2) => {
                 h2.className = "programmer-widget-heading";
-                h2.addA((a) => {
-                    a.href = githubUser.html_url;
-                    a.text = githubUser.name;
-                });
+                h2.innerText = githubUser.name;
             });
-            element.addH2((h2) => {
-                h2.className = "programmer-widget-logo";
-                h2.innerText = "Github";
+            element.addDiv((div) => {
+                div.className = "programmer-widget-image-container";
+                div.addImg((img) => {
+                    img.className = "programmer-widget-image";
+                    img.src = githubUser.avatar_url;
+                });
             });
         }
 
@@ -116,7 +122,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = githubUser.following.toString();
+                        divNumber.addA((a) => {
+                            a.href = `${githubUser.html_url}?tab=following`;
+                            a.text = githubUser.following.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -126,7 +135,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = githubUser.followers.toString();
+                        divNumber.addA((a) => {
+                            a.href = `${githubUser.html_url}?tab=followers`;
+                            a.text = githubUser.followers.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -136,7 +148,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = githubUser.public_repos.toString();
+                        divNumber.addA((a) => {
+                            a.href = `${githubUser.html_url}?tab=repositories`;
+                            a.text = githubUser.public_repos.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";
@@ -146,7 +161,10 @@ namespace ProgrammerWidget {
                 container.addDiv((div) => {
                     div.addDiv((divNumber) => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.innerHTML = githubUser.public_gists.toString();
+                        divNumber.addA((a) => {
+                            a.href = `https://gist.github.com/${githubUser.login}`;
+                            a.text = githubUser.public_gists.toString();
+                        });
                     });
                     div.addDiv((divTitle) => {
                         divTitle.className = "programmer-widget-list-title";

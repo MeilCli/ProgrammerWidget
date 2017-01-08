@@ -1,13 +1,46 @@
-﻿.programmer-widget-image-container {
-    width: 50%;
-    height: 150px;
+﻿/*
+    Head
+*/
+.programmer-widget-head-container {
+    border-bottom-color: darkgray;
+    border-bottom-width: 2px;
+    border-bottom-style: dotted;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.programmer-widget-logo {
+    font-style: italic;
+    font-size: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 16px;
+}
+
+.programmer-widget-follow {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 16px;
+    color: dodgerblue;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/*
+    Content
+*/
+.programmer-widget-image-container {
+    width: 30%;
     text-align: center;
 }
 
 .programmer-widget-image {
     width: 90px;
     height: 90px;
-    margin-top: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     border-style: solid;
     border-color: lightblue;
     border-width: 1px;
@@ -16,27 +49,14 @@
 
 .programmer-widget-heading {
     position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px;
-    text-align: center;
+    left: calc(30% + 16px);
+    font-size: 2em;
 }
 
-    .programmer-widget-heading > a {
-        text-decoration: none;
-        color: blue;
-    }
 
-.programmer-widget-logo {
-    position: absolute;
-    top: 0px;
-    right: 16px;
-    font-style: italic;
-    font-size: 24px;
-}
+/*
+    List
+*/
 
 .programmer-widget-list-container {
     display: flex;
@@ -44,8 +64,8 @@
     align-items: center;
     height: 50px;
     border-top-color: darkgray;
-    border-top-width: 1px;
-    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-style: dotted;
 }
 
     .programmer-widget-list-container > div {
@@ -54,10 +74,14 @@
 
 .programmer-widget-list-number {
     text-align: center;
-    color: dodgerblue;
-    font-size: 18px;
-    font-weight: 800;
 }
+
+    .programmer-widget-list-number > a {
+        color: dodgerblue;
+        font-size: 18px;
+        font-weight: 800;
+        text-decoration: none;
+    }
 
 .programmer-widget-list-title {
     text-align: center;
@@ -65,15 +89,23 @@
     font-size: 14px;
 }
 
+/*
+    Root
+*/
+
 .programmer-widget {
     width: 99.9%;
     max-width: 450px;
-    height: 200px;
+    min-height: 200px;
     position: relative;
     border-color: darkgray;
     border-width: 1px;
     border-style: solid;
 }
+
+/*
+    Theme
+*/
 
 .programmer-widget-paragraph-qiita:before {
     content: "Top Tags";
@@ -85,21 +117,17 @@
 
 .programmer-widget-paragraph-qiita {
     position: absolute;
-    top: 100px;
-    left: 0px;
+    top: 90px;
+    left: calc(30% + 16px);
     font-weight: 500;
-    width: 99.9%;
-    text-align: center;
 }
 
 .programmer-widget-paragraph-teratail-container {
     position: absolute;
-    top: 100px;
-    left: 0px;
+    top: 90px;
+    left: calc(30% + 16px);
     font-weight: 500;
     padding-left: 0px;
-    width: 99.9%;
-    text-align: center;
 }
 
 .programmer-widget-paragraph-teratail-list1:before {
@@ -137,9 +165,7 @@
 
 .programmer-widget-paragraph-github {
     position: absolute;
-    top: 100px;
-    left: 0px;
+    top: 90px;
+    left: calc(30% + 16px);
     font-weight: 500;
-    width: 99.9%;
-    text-align: center;
 }
