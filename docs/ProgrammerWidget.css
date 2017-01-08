@@ -189,6 +189,7 @@
         display: inline-block;
         margin-left: 4px;
         margin-right: 4px;
+        margin-bottom: 8px;
         color: gray;
         font-size: 12px;
     }
