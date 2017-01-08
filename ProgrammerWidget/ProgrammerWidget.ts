@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
             var qiita = new ProgrammerWidget.QiitaWidget();
             for (var i = 0; i < qiitaElements.length; i++) {
                 var element = qiitaElements[i];
-                qiita.set(element);
+                qiita.user(element);
             }
         }
     }

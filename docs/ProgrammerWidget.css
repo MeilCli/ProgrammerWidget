@@ -106,7 +106,9 @@
 /*
     Theme
 */
-
+/*
+    Qiita
+*/
 .programmer-widget-paragraph-qiita:before {
     content: "Top Tags";
     font-style: italic;
@@ -122,6 +124,109 @@
     font-weight: 500;
 }
 
+.programmer-widget-qiita-items-container {
+    height: 500px;
+    border-top-color: darkgray;
+    border-top-width: 2px;
+    border-top-style: dotted;
+    overflow-x: auto;
+}
+
+    .programmer-widget-qiita-items-container > hr {
+        margin: 0px 8px;
+        border-style: none;
+        border-width: 0px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: lightgray;
+    }
+
+.programmer-widget-qiita-items-panel {
+    display: flex;
+}
+
+.programmer-widget-qiita-items-panel-last {
+    margin-left: auto;
+}
+
+.programmer-widget-qiita-items-image {
+    height: 40px;
+    width: 40px;
+    margin: 8px;
+}
+
+.programmer-widget-qiita-items-head {
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    color: grey;
+}
+
+    .programmer-widget-qiita-items-head > a {
+        color: dodgerblue;
+        text-decoration: none;
+    }
+
+.programmer-widget-qiita-items-title {
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+    .programmer-widget-qiita-items-title > a {
+        color: dodgerblue;
+        font-size: 16px;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+.programmer-widget-qiita-items-tags {
+    padding-left: 0px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+    .programmer-widget-qiita-items-tags > li {
+        display: inline-block;
+        margin-left: 4px;
+        margin-right: 4px;
+        color: gray;
+        font-size: 12px;
+    }
+
+        .programmer-widget-qiita-items-tags > li > a {
+            background-color: ghostwhite;
+            color: gray;
+            padding: 4px 8px;
+            text-decoration: none;
+        }
+
+            .programmer-widget-qiita-items-tags > li > a:hover {
+                background-color: lightgray;
+            }
+
+.programmer-widget-qiita-items-stock {
+    font-size: 12px;
+    color: gray;
+    width: 35px;
+    text-align: right;
+    margin-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+.programmer-widget-qiita-items-comment {
+    font-size: 12px;
+    color: gray;
+    width: 35px;
+    text-align: right;
+    margin-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+/*
+    Teratail
+*/
 .programmer-widget-paragraph-teratail-container {
     position: absolute;
     top: 90px;
@@ -155,6 +260,9 @@
     margin-left: 16px;
 }
 
+/*
+    Github
+*/
 .programmer-widget-paragraph-github:before {
     content: "Top Languages";
     font-style: italic;

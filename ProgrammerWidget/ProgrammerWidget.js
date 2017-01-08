@@ -275,7 +275,7 @@ var ProgrammerWidget;
             super(...args);
             this.httpClient = new ProgrammerWidget.HttpClient();
         }
-        set(element) {
+        user(element) {
             return __awaiter(this, void 0, void 0, function* () {
                 var user = element.getAttribute(ProgrammerWidget.userNameAttribute);
                 if (user == null || user == undefined) {
@@ -293,14 +293,14 @@ var ProgrammerWidget;
                 this.setHead(element, qiitaUser);
                 this.setContent(element, qiitaUser);
                 this.setList(element, qiitaUser);
-                var tagsUrl = `https://qiita.com/api/v1/users/${qiitaUser.url_name}/items`;
-                var tagsItems = yield this.getAsyncWithStorage(this.httpClient, tagsUrl);
-                if (tagsItems == null || tagsItems == undefined) {
+                var itemsUrl = `https://qiita.com/api/v1/users/${qiitaUser.url_name}/items`;
+                var qiitaItems = yield this.getAsyncWithStorage(this.httpClient, itemsUrl);
+                if (qiitaItems == null || qiitaItems == undefined) {
                     return;
                 }
                 var tagsCountMap = new Map();
-                for (var i = 0; i < tagsItems.length; i++) {
-                    var item = tagsItems[i];
+                for (var i = 0; i < qiitaItems.length; i++) {
+                    var item = qiitaItems[i];
                     for (var j = 0; j < item.tags.length; j++) {
                         var tag = item.tags[j].name;
                         if (tagsCountMap.has(tag) == false) {
@@ -319,6 +319,7 @@ var ProgrammerWidget;
                     return a.count > b.count ? -1 : a.count < b.count ? 1 : 0;
                 });
                 this.setTags(element, tagsCountArray);
+                this.setItems(element, qiitaItems);
             });
         }
         setHead(element, qiitaUser) {
@@ -409,6 +410,69 @@ var ProgrammerWidget;
                         divTitle.innerHTML = "Contribution";
                     });
                 });
+            });
+        }
+        setItems(element, items) {
+            element.addDiv((container) => {
+                container.className = "programmer-widget-qiita-items-container";
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    if (i != 0) {
+                        container.appendChild(document.createElement("hr"));
+                    }
+                    container.addDiv((panel) => {
+                        panel.className = "programmer-widget-qiita-items-panel";
+                        panel.addDiv((div) => {
+                            div.addImg((img) => {
+                                img.className = "programmer-widget-qiita-items-image";
+                                img.src = item.user.profile_image_url;
+                            });
+                        });
+                        panel.addDiv((div) => {
+                            div.addP((p) => {
+                                p.className = "programmer-widget-qiita-items-head";
+                                p.innerHTML = `<a href="http://qiita.com/${item.user.url_name}">${item.user.url_name}</a>が${item.created_at_in_words}前に投稿`;
+                            });
+                            div.addP((p) => {
+                                p.className = "programmer-widget-qiita-items-title";
+                                p.addA((a) => {
+                                    a.href = item.url;
+                                    a.text = item.title;
+                                });
+                            });
+                            div.addUl((ul) => {
+                                ul.className = "programmer-widget-qiita-items-tags";
+                                ul.addLi((li) => {
+                                    li.innerHTML = `<i class="fa fa-tags" aria-hidden="true"></i>`;
+                                });
+                                for (var j = 0; j < item.tags.length; j++) {
+                                    var tag = item.tags[j];
+                                    ul.addLi((li) => {
+                                        li.addA((a) => {
+                                            a.href = `http://qiita.com/tags/${tag.url_name}`;
+                                            a.text = tag.name;
+                                        });
+                                    });
+                                }
+                            });
+                        });
+                        panel.addDiv((div) => {
+                            div.className = "programmer-widget-qiita-items-panel-last";
+                            if (item.stock_count > 0) {
+                                div.addP((p) => {
+                                    p.className = "programmer-widget-qiita-items-stock";
+                                    p.innerHTML = `<i class="fa fa-folder-open-o" aria-hidden="true"></i> ${item.stock_count.toString()}`;
+                                });
+                            }
+                            if (item.comment_count > 0) {
+                                div.addP((p) => {
+                                    p.className = "programmer-widget-qiita-items-comment";
+                                    p.innerHTML = `<i class="fa fa-comment-o" aria-hidden="true"></i> ${item.comment_count.toString()}`;
+                                });
+                            }
+                        });
+                    });
+                }
             });
         }
     }
@@ -569,7 +633,7 @@ window.addEventListener("load", () => {
             var qiita = new ProgrammerWidget.QiitaWidget();
             for (var i = 0; i < qiitaElements.length; i++) {
                 var element = qiitaElements[i];
-                qiita.set(element);
+                qiita.user(element);
             }
         }
     }
