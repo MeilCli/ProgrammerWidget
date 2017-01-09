@@ -85,7 +85,7 @@ namespace ProgrammerWidget {
                 div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}`;
-                    a.innerText = `Follow @${teratailUserResponse.user.display_name}`;
+                    a.innerText = `View ${teratailUserResponse.user.display_name} on Teratail`;
                 });
             });
         }

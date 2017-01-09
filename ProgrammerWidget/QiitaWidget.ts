@@ -112,7 +112,7 @@ namespace ProgrammerWidget {
                 div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = qiitaUser.url;
-                    a.innerText = `Follow @${qiitaUser.url_name}`;
+                    a.innerText = `View ${qiitaUser.url_name} on Qiita`;
                 });
             });
         }

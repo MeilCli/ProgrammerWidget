@@ -197,7 +197,7 @@ var ProgrammerWidget;
                 div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = githubUser.html_url;
-                    a.innerText = `Follow @${githubUser.login}`;
+                    a.innerText = `View ${githubUser.login} on Github`;
                 });
             });
         }
@@ -851,7 +851,7 @@ var ProgrammerWidget;
                 div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = qiitaUser.url;
-                    a.innerText = `Follow @${qiitaUser.url_name}`;
+                    a.innerText = `View ${qiitaUser.url_name} on Qiita`;
                 });
             });
         }
@@ -1051,7 +1051,7 @@ var ProgrammerWidget;
                 div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}`;
-                    a.innerText = `Follow @${teratailUserResponse.user.display_name}`;
+                    a.innerText = `View ${teratailUserResponse.user.display_name} on Teratail`;
                 });
             });
         }

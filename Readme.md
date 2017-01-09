@@ -7,7 +7,7 @@ Web Widget for Qiita, Teratail and Github
 ## Overview
 
 - Use TypeScript (convert to ECMAScript 6)
-- Can cache to local storage (save some requests)
+- Can cache to local storage (save some requests for a hour)
 - Responsive widget
 
 ## Require
@@ -19,7 +19,7 @@ ECMAScript 6 enviroment in browser
 |:--|:--:|:--:|
 |Qiita|150|2|
 |Teratail|30|4|
-|Github|60|2 + Repository Count(max 10)|
+|Github|60|2 + Repository Count(max 10) + (if with-activity +1)|
 
 ## License
 This Library is under MIT License
