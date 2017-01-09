@@ -59,10 +59,10 @@ var ProgrammerWidget;
     class HttpClient {
         getAsync(request) {
             return __awaiter(this, void 0, void 0, function* () {
-                return new Promise((resolve) => {
+                return new Promise(resolve => {
                     var http = new XMLHttpRequest();
                     http.open("GET", request.url);
-                    http.onload = (e) => {
+                    http.onload = e => {
                         var response = new HttpResponse(http.responseText, http.status);
                         resolve(response);
                     };
@@ -172,13 +172,13 @@ var ProgrammerWidget;
             });
         }
         setHead(element, githubUser) {
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-head-container";
-                div.addP((p) => {
+                div.addP(p => {
                     p.className = "programmer-widget-logo";
                     p.innerText = "Github";
                 });
-                div.addA((a) => {
+                div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = githubUser.html_url;
                     a.innerText = `Follow @${githubUser.login}`;
@@ -186,75 +186,75 @@ var ProgrammerWidget;
             });
         }
         setContent(element, githubUser) {
-            element.addH2((h2) => {
+            element.addH2(h2 => {
                 h2.className = "programmer-widget-heading";
                 h2.innerText = githubUser.name;
             });
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-image-container";
-                div.addImg((img) => {
+                div.addImg(img => {
                     img.className = "programmer-widget-image";
                     img.src = githubUser.avatar_url;
                 });
             });
         }
         setLang(element, langSizeArray) {
-            element.addP((p) => {
+            element.addP(p => {
                 p.className = "programmer-widget-paragraph-github";
                 p.innerText = langSizeArray.slice(0, 3).map((lang, index, array) => lang.name).join(", ");
             });
         }
         setList(element, githubUser) {
-            element.addDiv((container) => {
+            element.addDiv(container => {
                 container.className = "programmer-widget-list-container";
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${githubUser.html_url}?tab=following`;
                             a.text = githubUser.following.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Following";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${githubUser.html_url}?tab=followers`;
                             a.text = githubUser.followers.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Followers";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${githubUser.html_url}?tab=repositories`;
                             a.text = githubUser.public_repos.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Repositories";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://gist.github.com/${githubUser.login}`;
                             a.text = githubUser.public_gists.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Gits";
                     });
@@ -323,13 +323,13 @@ var ProgrammerWidget;
             });
         }
         setHead(element, qiitaUser) {
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-head-container";
-                div.addP((p) => {
+                div.addP(p => {
                     p.className = "programmer-widget-logo";
                     p.innerText = "Qiita";
                 });
-                div.addA((a) => {
+                div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = qiitaUser.url;
                     a.innerText = `Follow @${qiitaUser.url_name}`;
@@ -337,75 +337,75 @@ var ProgrammerWidget;
             });
         }
         setContent(element, qiitaUser) {
-            element.addH2((h2) => {
+            element.addH2(h2 => {
                 h2.className = "programmer-widget-heading";
                 h2.innerText = qiitaUser.name;
             });
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-image-container";
-                div.addImg((img) => {
+                div.addImg(img => {
                     img.className = "programmer-widget-image";
                     img.src = qiitaUser.profile_image_url;
                 });
             });
         }
         setTags(element, tagsCountArray) {
-            element.addP((p) => {
+            element.addP(p => {
                 p.className = "programmer-widget-paragraph-qiita";
                 p.innerText = tagsCountArray.slice(0, 3).map((tag, index, array) => tag.name).join(", ");
             });
         }
         setList(element, qiitaUser) {
-            element.addDiv((container) => {
+            element.addDiv(container => {
                 container.className = "programmer-widget-list-container";
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${qiitaUser.url}/following_users`;
                             a.text = qiitaUser.following_users.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Following";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${qiitaUser.url}/followers`;
                             a.text = qiitaUser.followers.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Followers";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${qiitaUser.url}/items`;
                             a.text = qiitaUser.items.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Items";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${qiitaUser.url}/contributions`;
                             a.text = qiitaUser.contribution.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Contribution";
                     });
@@ -413,42 +413,42 @@ var ProgrammerWidget;
             });
         }
         setItems(element, items) {
-            element.addDiv((container) => {
+            element.addDiv(container => {
                 container.className = "programmer-widget-qiita-items-container";
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
                     if (i != 0) {
                         container.appendChild(document.createElement("hr"));
                     }
-                    container.addDiv((panel) => {
+                    container.addDiv(panel => {
                         panel.className = "programmer-widget-qiita-items-panel";
-                        panel.addDiv((div) => {
-                            div.addImg((img) => {
+                        panel.addDiv(div => {
+                            div.addImg(img => {
                                 img.className = "programmer-widget-qiita-items-image";
                                 img.src = item.user.profile_image_url;
                             });
                         });
-                        panel.addDiv((div) => {
-                            div.addP((p) => {
+                        panel.addDiv(div => {
+                            div.addP(p => {
                                 p.className = "programmer-widget-qiita-items-head";
                                 p.innerHTML = `<a href="http://qiita.com/${item.user.url_name}">${item.user.url_name}</a>が${item.created_at_in_words}前に投稿`;
                             });
-                            div.addP((p) => {
+                            div.addP(p => {
                                 p.className = "programmer-widget-qiita-items-title";
-                                p.addA((a) => {
+                                p.addA(a => {
                                     a.href = item.url;
                                     a.text = item.title;
                                 });
                             });
-                            div.addUl((ul) => {
+                            div.addUl(ul => {
                                 ul.className = "programmer-widget-qiita-items-tags";
-                                ul.addLi((li) => {
+                                ul.addLi(li => {
                                     li.innerHTML = `<i class="fa fa-tags" aria-hidden="true"></i>`;
                                 });
                                 for (var j = 0; j < item.tags.length; j++) {
                                     var tag = item.tags[j];
-                                    ul.addLi((li) => {
-                                        li.addA((a) => {
+                                    ul.addLi(li => {
+                                        li.addA(a => {
                                             a.href = `http://qiita.com/tags/${tag.url_name}`;
                                             a.text = tag.name;
                                         });
@@ -456,16 +456,16 @@ var ProgrammerWidget;
                                 }
                             });
                         });
-                        panel.addDiv((div) => {
+                        panel.addDiv(div => {
                             div.className = "programmer-widget-qiita-items-panel-last";
                             if (item.stock_count > 0) {
-                                div.addP((p) => {
+                                div.addP(p => {
                                     p.className = "programmer-widget-qiita-items-stock";
                                     p.innerHTML = `<i class="fa fa-folder-open-o" aria-hidden="true"></i> ${item.stock_count.toString()}`;
                                 });
                             }
                             if (item.comment_count > 0) {
-                                div.addP((p) => {
+                                div.addP(p => {
                                     p.className = "programmer-widget-qiita-items-comment";
                                     p.innerHTML = `<i class="fa fa-comment-o" aria-hidden="true"></i> ${item.comment_count.toString()}`;
                                 });
@@ -520,13 +520,13 @@ var ProgrammerWidget;
             });
         }
         setHead(element, teratailUserResponse) {
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-head-container";
-                div.addP((p) => {
+                div.addP(p => {
                     p.className = "programmer-widget-logo";
                     p.innerText = "Teratail";
                 });
-                div.addA((a) => {
+                div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}`;
                     a.innerText = `Follow @${teratailUserResponse.user.display_name}`;
@@ -534,82 +534,82 @@ var ProgrammerWidget;
             });
         }
         setContent(element, teratailUserResponse) {
-            element.addH2((h2) => {
+            element.addH2(h2 => {
                 h2.className = "programmer-widget-heading";
                 h2.innerText = teratailUserResponse.user.display_name;
             });
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-image-container";
-                div.addImg((img) => {
+                div.addImg(img => {
                     img.className = "programmer-widget-image";
                     img.src = teratailUserResponse.user.photo;
                 });
             });
         }
         setRank(element, teratailUserResponse) {
-            element.addUl((ul) => {
+            element.addUl(ul => {
                 ul.className = "programmer-widget-paragraph-teratail-container";
-                ul.addLi((li) => {
+                ul.addLi(li => {
                     li.className = "programmer-widget-paragraph-teratail-list1";
                     li.innerText = teratailUserResponse.user.score_ranking.total.rank.toString();
                 });
-                ul.addLi((li) => {
+                ul.addLi(li => {
                     li.className = "programmer-widget-paragraph-teratail-list2";
                     li.innerText = teratailUserResponse.user.score_ranking.weekly.rank.toString();
                 });
             });
         }
         setList(element, teratailUserResponse, following, follower, answer) {
-            element.addDiv((container) => {
+            element.addDiv(container => {
                 container.className = "programmer-widget-list-container";
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}/connections`;
                             a.text = following;
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Following";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}/connections`;
                             a.text = follower;
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Followers";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}#reply`;
                             a.text = answer;
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Answer";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}#score`;
                             a.text = teratailUserResponse.user.score.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Score";
                     });

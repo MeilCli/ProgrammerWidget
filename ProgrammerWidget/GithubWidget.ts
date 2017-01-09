@@ -81,13 +81,13 @@ namespace ProgrammerWidget {
         }
 
         setHead(element: Element, githubUser: GithubUser) {
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-head-container";
-                div.addP((p) => {
+                div.addP(p => {
                     p.className = "programmer-widget-logo";
                     p.innerText = "Github";
                 });
-                div.addA((a) => {
+                div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = githubUser.html_url;
                     a.innerText = `Follow @${githubUser.login}`;
@@ -96,13 +96,13 @@ namespace ProgrammerWidget {
         }
 
         setContent(element: Element, githubUser: GithubUser) {
-            element.addH2((h2) => {
+            element.addH2(h2 => {
                 h2.className = "programmer-widget-heading";
                 h2.innerText = githubUser.name;
             });
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-image-container";
-                div.addImg((img) => {
+                div.addImg(img => {
                     img.className = "programmer-widget-image";
                     img.src = githubUser.avatar_url;
                 });
@@ -110,63 +110,63 @@ namespace ProgrammerWidget {
         }
 
         setLang(element: Element, langSizeArray: Array<Lang>) {
-            element.addP((p) => {
+            element.addP(p => {
                 p.className = "programmer-widget-paragraph-github";
                 p.innerText = langSizeArray.slice(0, 3).map((lang, index, array) => lang.name).join(", ");
             });
         }
 
         setList(element: Element, githubUser: GithubUser) {
-            element.addDiv((container) => {
+            element.addDiv(container => {
                 container.className = "programmer-widget-list-container";
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${githubUser.html_url}?tab=following`;
                             a.text = githubUser.following.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Following";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${githubUser.html_url}?tab=followers`;
                             a.text = githubUser.followers.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Followers";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `${githubUser.html_url}?tab=repositories`;
                             a.text = githubUser.public_repos.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Repositories";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://gist.github.com/${githubUser.login}`;
                             a.text = githubUser.public_gists.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Gits";
                     });

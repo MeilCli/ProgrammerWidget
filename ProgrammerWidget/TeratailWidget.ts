@@ -72,13 +72,13 @@ namespace ProgrammerWidget {
         }
 
         setHead(element: Element, teratailUserResponse: TeratailUserResponse) {
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-head-container";
-                div.addP((p) => {
+                div.addP(p => {
                     p.className = "programmer-widget-logo";
                     p.innerText = "Teratail";
                 });
-                div.addA((a) => {
+                div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}`;
                     a.innerText = `Follow @${teratailUserResponse.user.display_name}`;
@@ -87,13 +87,13 @@ namespace ProgrammerWidget {
         }
 
         setContent(element: Element, teratailUserResponse: TeratailUserResponse) {
-            element.addH2((h2) => {
+            element.addH2(h2 => {
                 h2.className = "programmer-widget-heading";
                 h2.innerText = teratailUserResponse.user.display_name;
             });
-            element.addDiv((div) => {
+            element.addDiv(div => {
                 div.className = "programmer-widget-image-container";
-                div.addImg((img) => {
+                div.addImg(img => {
                     img.className = "programmer-widget-image";
                     img.src = teratailUserResponse.user.photo;
                 });
@@ -101,13 +101,13 @@ namespace ProgrammerWidget {
         }
 
         setRank(element: Element, teratailUserResponse: TeratailUserResponse) {
-            element.addUl((ul) => {
+            element.addUl(ul => {
                 ul.className = "programmer-widget-paragraph-teratail-container";
-                ul.addLi((li) => {
+                ul.addLi(li => {
                     li.className = "programmer-widget-paragraph-teratail-list1";
                     li.innerText = teratailUserResponse.user.score_ranking.total.rank.toString();
                 });
-                ul.addLi((li) => {
+                ul.addLi(li => {
                     li.className = "programmer-widget-paragraph-teratail-list2";
                     li.innerText = teratailUserResponse.user.score_ranking.weekly.rank.toString();
                 });
@@ -115,56 +115,56 @@ namespace ProgrammerWidget {
         }
 
         setList(element: Element, teratailUserResponse: TeratailUserResponse, following: string, follower: string, answer: string) {
-            element.addDiv((container) => {
+            element.addDiv(container => {
                 container.className = "programmer-widget-list-container";
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}/connections`;
                             a.text = following;
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Following";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}/connections`;
                             a.text = follower;
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Followers";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}#reply`;
                             a.text = answer;
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Answer";
                     });
                 });
-                container.addDiv((div) => {
-                    div.addDiv((divNumber) => {
+                container.addDiv(div => {
+                    div.addDiv(divNumber => {
                         divNumber.className = "programmer-widget-list-number";
-                        divNumber.addA((a) => {
+                        divNumber.addA(a => {
                             a.href = `https://teratail.com/users/${teratailUserResponse.user.display_name}#score`;
                             a.text = teratailUserResponse.user.score.toString();
                         });
                     });
-                    div.addDiv((divTitle) => {
+                    div.addDiv(divTitle => {
                         divTitle.className = "programmer-widget-list-title";
                         divTitle.innerHTML = "Score";
                     });
