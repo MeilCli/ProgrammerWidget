@@ -236,7 +236,7 @@ namespace ProgrammerWidget {
                         panel.addDiv(div => {
                             div.addP(p => {
                                 p.className = "programmer-widget-teratail-items-head";
-                                var date = this.toString(new Date(answerItem.created));
+                                var date = this.toString(new Date(answerItem.created.replace(" ", "T")+"+0900"));
                                 p.innerHTML = `<a href="https://teratail.com/users/${userItem.user.display_name}">${userItem.user.display_name}</a>が${date}に回答`;
                             });
                             div.addP(p => {
