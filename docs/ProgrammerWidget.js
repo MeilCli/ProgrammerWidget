@@ -1174,7 +1174,7 @@ var ProgrammerWidget;
                         panel.addDiv(div => {
                             div.addP(p => {
                                 p.className = "programmer-widget-teratail-items-head";
-                                var date = this.toString(new Date(answerItem.created.replace(" ", "T") + "+09:00"));
+                                var date = this.toString(new Date(new Date(answerItem.created.replace(" ", "T") + "Z").getTime() - ProgrammerWidget.hour * 9));
                                 p.innerHTML = `<a href="https://teratail.com/users/${userItem.user.display_name}">${userItem.user.display_name}</a>が${date}に回答`;
                             });
                             div.addP(p => {
