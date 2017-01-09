@@ -8,20 +8,152 @@
     <title>ProgrammerWidget Sample</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/6c0013e839.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="ProgrammerWidget.css" type="text/css" />
     <script src="ProgrammerWidget.js"></script>
 </head>
 <body>
-    <h1>ProgrammerWidget Sample</h1>
+    <div class="container">
+        <h1>ProgrammerWidget Sample</h1>
 
-    <div class="programmer-widget-qiita" target-user="meilcli"></div>
-    <br />
-    <div class="programmer-widget-qiita-with-items" target-user="meilcli"></div>
-    <br />
-    <div class="programmer-widget-teratail" target-user="meilcli"></div>
-    <br />
-    <div class="programmer-widget-github" target-user="meilcli"></div>
-    <br />
-    <div class="programmer-widget-github-with-activity" target-user="meilcli"></div>
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <h2>
+                    Qiita Widget (User Profile Only)
+                </h2>
+                <p>
+                    In head:
+                </p>
+                <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;ProgrammerWidget.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;ProgrammerWidget.js&quot;&gt;&lt;/script&gt;</code></pre>
+                <p>
+                    In body:
+                </p>
+                <pre><code>&lt;div class=&quot;programmer-widget-qiita&quot; target-user=&quot;meilcli&quot;&gt;&lt;/div&gt;</code></pre>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="programmer-widget-qiita" target-user="meilcli"></div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <h2>
+                    Qiita Widget (User Profile With Items)
+                </h2>
+                <p>
+                    In head:
+                </p>
+                <pre><code>// Replace Your Font Awesome CDN Code!
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://use.fontawesome.com/6c0013e839.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;ProgrammerWidget.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;ProgrammerWidget.js&quot;&gt;&lt;/script&gt;</code></pre>
+                <p>
+                    In body:
+                </p>
+                <pre><code>&lt;div class=&quot;programmer-widget-qiita-with-items&quot; target-user=&quot;meilcli&quot;&gt;&lt;/div&gt;</code></pre>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="programmer-widget-qiita-with-items" target-user="meilcli"></div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <h2>
+                    Teratail Widget (User Profile Only)
+                </h2>
+                <p>
+                    In head:
+                </p>
+                <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;ProgrammerWidget.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;ProgrammerWidget.js&quot;&gt;&lt;/script&gt;</code></pre>
+                <p>
+                    In body:
+                </p>
+                <pre><code>&lt;div class=&quot;programmer-widget-teratail&quot; target-user=&quot;meilcli&quot;&gt;&lt;/div&gt;</code></pre>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="programmer-widget-teratail" target-user="meilcli"></div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <h2>
+                    Teratail Widget (User Profile With Answer)
+                </h2>
+                <p>
+                    In head:
+                </p>
+                <pre><code>// Replace Your Font Awesome CDN Code!
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://use.fontawesome.com/6c0013e839.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;ProgrammerWidget.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;ProgrammerWidget.js&quot;&gt;&lt;/script&gt;</code></pre>
+                <p>
+                    In body:
+                </p>
+                <pre><code>&lt;div class=&quot;programmer-widget-teratail-with-answer&quot; target-user=&quot;meilcli&quot;&gt;&lt;/div&gt;</code></pre>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="programmer-widget-teratail-with-answer" target-user="meilcli"></div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <h2>
+                    Github Widget (User Profile Only)
+                </h2>
+                <p>
+                    In head:
+                </p>
+                <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;ProgrammerWidget.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;ProgrammerWidget.js&quot;&gt;&lt;/script&gt;</code></pre>
+                <p>
+                    In body:
+                </p>
+                <pre><code>&lt;div class=&quot;programmer-widget-github&quot; target-user=&quot;meilcli&quot;&gt;&lt;/div&gt;</code></pre>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="programmer-widget-github" target-user="meilcli"></div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <h2>
+                    Github Widget (User Profile With Activity)
+                </h2>
+                <p>
+                    In head:
+                </p>
+                <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;ProgrammerWidget.css&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;ProgrammerWidget.js&quot;&gt;&lt;/script&gt;</code></pre>
+                <p>
+                    In body:
+                </p>
+                <pre><code>&lt;div class=&quot;programmer-widget-github-with-activity&quot; target-user=&quot;meilcli&quot;&gt;&lt;/div&gt;</code></pre>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="programmer-widget-github-with-activity" target-user="meilcli"></div>
+            </div>
+        </div>
+
+        <h2>
+            Viiw Source Code On <a href="https://github.com/MeilCli/ProgrammerWidget">Github</a>
+        </h2>
+    </div>
 </body>
 </html>

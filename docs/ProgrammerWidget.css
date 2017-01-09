@@ -261,6 +261,83 @@
     margin-left: 16px;
 }
 
+.programmer-widget-teratail-items-container {
+    height: 500px;
+    border-top-color: darkgray;
+    border-top-width: 2px;
+    border-top-style: dotted;
+    overflow-x: auto;
+}
+
+    .programmer-widget-teratail-items-container > hr {
+        margin: 0px 8px;
+        border-style: none;
+        border-width: 0px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: lightgray;
+    }
+
+.programmer-widget-teratail-items-panel {
+    display: flex;
+}
+
+.programmer-widget-teratail-items-image {
+    height: 40px;
+    width: 40px;
+    margin: 8px;
+}
+
+.programmer-widget-teratail-items-head {
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    color: grey;
+}
+
+    .programmer-widget-teratail-items-head > a {
+        color: dodgerblue;
+        text-decoration: none;
+    }
+
+.programmer-widget-teratail-items-title {
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+    .programmer-widget-teratail-items-title > a {
+        color: dodgerblue;
+        font-size: 16px;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+.programmer-widget-teratail-items-tags {
+    padding-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+    .programmer-widget-teratail-items-tags > li {
+        display: inline-block;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-bottom: 8px;
+        color: gray;
+        font-size: 12px;
+    }
+
+        .programmer-widget-teratail-items-tags > li > a {
+            background-color: ghostwhite;
+            color: gray;
+            padding: 4px 8px;
+            text-decoration: none;
+        }
+
+            .programmer-widget-teratail-items-tags > li > a:hover {
+                background-color: lightgray;
+            }
+
 /*
     Github
 */

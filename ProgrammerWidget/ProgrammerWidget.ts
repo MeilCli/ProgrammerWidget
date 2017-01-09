@@ -21,13 +21,16 @@ window.addEventListener("load", () => {
         }
     }
     {
+        var teratail = new ProgrammerWidget.TeratailWidget();
         var teratailElements = document.getElementsByClassName(ProgrammerWidget.teratailClass);
-        if (teratailElements.length > 0) {
-            var teratail = new ProgrammerWidget.TeratailWidget();
-            for (var i = 0; i < teratailElements.length; i++) {
-                var element = teratailElements[i];
-                teratail.user(element);
-            }
+        for (var i = 0; i < teratailElements.length; i++) {
+            var element = teratailElements[i];
+            teratail.user(element);
+        }
+        var teratailWithAnswerElements = document.getElementsByClassName(ProgrammerWidget.teratailWithAnswerClass);
+        for (var i = 0; i < teratailWithAnswerElements.length; i++) {
+            var element = teratailWithAnswerElements[i];
+            teratail.userWiteAnswer(element);
         }
     }
     {
