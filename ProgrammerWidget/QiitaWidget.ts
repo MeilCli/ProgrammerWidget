@@ -40,9 +40,17 @@ namespace ProgrammerWidget {
     }
 
     export class QiitaWidget extends Widget {
-        httpClient = new HttpClient();
+        private httpClient = new HttpClient();
 
-        async user(element: Element) {
+        user(element: Element) {
+            this.set(element, false);
+        }
+
+        userAndItems(element: Element) {
+            this.set(element, true);
+        }
+
+        private async set(element: Element, containsItems: boolean) {
             var user = element.getAttribute(userNameAttribute);
             if (user == null || user == undefined) {
                 return;
@@ -89,10 +97,12 @@ namespace ProgrammerWidget {
             });
 
             this.setTags(element, tagsCountArray);
-            this.setItems(element, qiitaItems);
+            if (containsItems) {
+                this.setItems(element, qiitaItems);
+            }
         }
 
-        setHead(element: Element, qiitaUser: QiitaUserDetail) {
+        private setHead(element: Element, qiitaUser: QiitaUserDetail) {
             element.addDiv(div => {
                 div.className = "programmer-widget-head-container";
                 div.addP(p => {
@@ -107,7 +117,7 @@ namespace ProgrammerWidget {
             });
         }
 
-        setContent(element: Element, qiitaUser: QiitaUserDetail) {
+        private setContent(element: Element, qiitaUser: QiitaUserDetail) {
             element.addH2(h2 => {
                 h2.className = "programmer-widget-heading";
                 h2.innerText = qiitaUser.name;
@@ -121,14 +131,14 @@ namespace ProgrammerWidget {
             });
         }
 
-        setTags(element: Element, tagsCountArray: Array<Tag>) {
+        private setTags(element: Element, tagsCountArray: Array<Tag>) {
             element.addP(p => {
                 p.className = "programmer-widget-paragraph-qiita";
                 p.innerText = tagsCountArray.slice(0, 3).map((tag, index, array) => tag.name).join(", ");
             });
         }
 
-        setList(element: Element, qiitaUser: QiitaUserDetail) {
+        private setList(element: Element, qiitaUser: QiitaUserDetail) {
             element.addDiv(container => {
                 container.className = "programmer-widget-list-container";
                 container.addDiv(div => {
@@ -186,7 +196,7 @@ namespace ProgrammerWidget {
             });
         }
 
-        setItems(element: Element, items: Array<QiitaItem>) {
+        private setItems(element: Element, items: Array<QiitaItem>) {
             element.addDiv(container => {
                 container.className = "programmer-widget-qiita-items-container";
                 for (var i = 0; i < items.length; i++) {

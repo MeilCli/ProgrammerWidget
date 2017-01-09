@@ -8,13 +8,16 @@
 
 window.addEventListener("load", () => {
     {
+        var qiita = new ProgrammerWidget.QiitaWidget();
         var qiitaElements = document.getElementsByClassName(ProgrammerWidget.qiitaClass);
-        if (qiitaElements.length > 0) {
-            var qiita = new ProgrammerWidget.QiitaWidget();
-            for (var i = 0; i < qiitaElements.length; i++) {
-                var element = qiitaElements[i];
-                qiita.user(element);
-            }
+        for (var i = 0; i < qiitaElements.length; i++) {
+            var element = qiitaElements[i];
+            qiita.user(element);
+        }
+        var qiitaWithItemsElements = document.getElementsByClassName(ProgrammerWidget.qiitaWithItemsClass);
+        for (var i = 0; i < qiitaWithItemsElements.length; i++) {
+            var element = qiitaWithItemsElements[i];
+            qiita.userAndItems(element);
         }
     }
     {
@@ -23,18 +26,21 @@ window.addEventListener("load", () => {
             var teratail = new ProgrammerWidget.TeratailWidget();
             for (var i = 0; i < teratailElements.length; i++) {
                 var element = teratailElements[i];
-                teratail.set(element);
+                teratail.user(element);
             }
         }
     }
     {
+        var github = new ProgrammerWidget.GithubWidget();
         var githubElements = document.getElementsByClassName(ProgrammerWidget.githubClass);
-        if (githubElements.length > 0) {
-            var github = new ProgrammerWidget.GithubWidget();
-            for (var i = 0; i < githubElements.length; i++) {
-                var element = githubElements[i];
-                github.set(element);
-            }
+        for (var i = 0; i < githubElements.length; i++) {
+            var element = githubElements[i];
+            github.user(element);
+        }
+        var githubWithActivityElements = document.getElementsByClassName(ProgrammerWidget.githubWithActivityClass);
+        for (var i = 0; i < githubWithActivityElements.length; i++) {
+            var element = githubWithActivityElements[i];
+            github.userWithActivity(element);
         }
     }
 });

@@ -34,9 +34,13 @@ namespace ProgrammerWidget {
     }
 
     export class TeratailWidget extends Widget {
-        httpClient = new HttpClient();
+        private httpClient = new HttpClient();
 
-        async set(element: Element) {
+        user(element: Element) {
+            this.set(element);
+        }
+
+        private async set(element: Element) {
             var user = element.getAttribute(userNameAttribute);
             if (user == null || user == undefined) {
                 return;
@@ -71,7 +75,7 @@ namespace ProgrammerWidget {
             this.setList(element, teratailUserResponse, following, follower, answer);
         }
 
-        setHead(element: Element, teratailUserResponse: TeratailUserResponse) {
+        private setHead(element: Element, teratailUserResponse: TeratailUserResponse) {
             element.addDiv(div => {
                 div.className = "programmer-widget-head-container";
                 div.addP(p => {
@@ -86,7 +90,7 @@ namespace ProgrammerWidget {
             });
         }
 
-        setContent(element: Element, teratailUserResponse: TeratailUserResponse) {
+        private setContent(element: Element, teratailUserResponse: TeratailUserResponse) {
             element.addH2(h2 => {
                 h2.className = "programmer-widget-heading";
                 h2.innerText = teratailUserResponse.user.display_name;
@@ -100,7 +104,7 @@ namespace ProgrammerWidget {
             });
         }
 
-        setRank(element: Element, teratailUserResponse: TeratailUserResponse) {
+        private setRank(element: Element, teratailUserResponse: TeratailUserResponse) {
             element.addUl(ul => {
                 ul.className = "programmer-widget-paragraph-teratail-container";
                 ul.addLi(li => {
@@ -114,7 +118,7 @@ namespace ProgrammerWidget {
             });
         }
 
-        setList(element: Element, teratailUserResponse: TeratailUserResponse, following: string, follower: string, answer: string) {
+        private setList(element: Element, teratailUserResponse: TeratailUserResponse, following: string, follower: string, answer: string) {
             element.addDiv(container => {
                 container.className = "programmer-widget-list-container";
                 container.addDiv(div => {
