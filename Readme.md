@@ -11,7 +11,9 @@ Web Widget for Qiita, Teratail and Github
 - Responsive widget
 
 ## Require
-ECMAScript 6 enviroment in browser
+- ECMAScript 6 enviroment in browser
+- if use Qiita-With-Items widget, [Font Awesome](http://fontawesome.io/icons/)
+- if use Github-With-Activity widget, [Octicons](https://octicons.github.com/)
 
 ## RateLimit
 
