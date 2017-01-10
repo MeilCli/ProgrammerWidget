@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var ProgrammerWidget;
 (function (ProgrammerWidget) {
     ProgrammerWidget.userNameAttribute = "target-user";
+    ProgrammerWidget.listHeightAttribute = "target-list-height";
     ProgrammerWidget.qiitaClass = "programmer-widget-qiita";
     ProgrammerWidget.qiitaWithItemsClass = "programmer-widget-qiita-with-items";
     ProgrammerWidget.teratailClass = "programmer-widget-teratail";
@@ -135,6 +136,7 @@ var ProgrammerWidget;
         set(element, containsActivity) {
             return __awaiter(this, void 0, void 0, function* () {
                 var user = element.getAttribute(ProgrammerWidget.userNameAttribute);
+                var listHeight = element.getAttribute(ProgrammerWidget.listHeightAttribute);
                 if (user == null || user == undefined) {
                     return;
                 }
@@ -154,7 +156,7 @@ var ProgrammerWidget;
                     var activityUrl = `https://api.github.com/users/${githubUser.login}/events/public`;
                     var activityItems = yield this.getAsyncWithStorage(this.httpClient, activityUrl);
                     if (activityItems != null && activityItems != undefined) {
-                        this.setItems(element, activityItems);
+                        this.setItems(element, listHeight, activityItems);
                     }
                 }
                 var repoUrl = `https://api.github.com/users/${githubUser.login}/repos?sort=updated&direction=desc`;
@@ -278,9 +280,12 @@ var ProgrammerWidget;
                 });
             });
         }
-        setItems(element, items) {
+        setItems(element, listHeight, items) {
             element.addDiv(container => {
                 container.className = "programmer-widget-github-items-container";
+                if (listHeight != null && listHeight != undefined) {
+                    container.style.height = listHeight;
+                }
                 var addHr = i => {
                     if (i != 0) {
                         container.appendChild(document.createElement("hr"));
@@ -796,6 +801,7 @@ var ProgrammerWidget;
         set(element, containsItems) {
             return __awaiter(this, void 0, void 0, function* () {
                 var user = element.getAttribute(ProgrammerWidget.userNameAttribute);
+                var listHeight = element.getAttribute(ProgrammerWidget.listHeightAttribute);
                 if (user == null || user == undefined) {
                     return;
                 }
@@ -838,7 +844,7 @@ var ProgrammerWidget;
                 });
                 this.setTags(element, tagsCountArray);
                 if (containsItems) {
-                    this.setItems(element, qiitaItems);
+                    this.setItems(element, listHeight, qiitaItems);
                 }
             });
         }
@@ -932,9 +938,12 @@ var ProgrammerWidget;
                 });
             });
         }
-        setItems(element, items) {
+        setItems(element, listHeight, items) {
             element.addDiv(container => {
                 container.className = "programmer-widget-qiita-items-container";
+                if (listHeight != null && listHeight != undefined) {
+                    container.style.height = listHeight;
+                }
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
                     if (i != 0) {
@@ -1018,6 +1027,7 @@ var ProgrammerWidget;
         set(element, containsAnswer) {
             return __awaiter(this, void 0, void 0, function* () {
                 var user = element.getAttribute(ProgrammerWidget.userNameAttribute);
+                var listHeight = element.getAttribute(ProgrammerWidget.listHeightAttribute);
                 if (user == null || user == undefined) {
                     return;
                 }
@@ -1053,7 +1063,7 @@ var ProgrammerWidget;
                         }
                         questionItems[i] = questionItem;
                     }
-                    this.setItems(element, teratailUserResponse, answerItems, questionItems);
+                    this.setItems(element, listHeight, teratailUserResponse, answerItems, questionItems);
                 }
             });
         }
@@ -1154,9 +1164,12 @@ var ProgrammerWidget;
                 });
             });
         }
-        setItems(element, userItem, answerItems, questionItems) {
+        setItems(element, listHeight, userItem, answerItems, questionItems) {
             element.addDiv(container => {
                 container.className = "programmer-widget-teratail-items-container";
+                if (listHeight != null && listHeight != undefined) {
+                    container.style.height = listHeight;
+                }
                 for (var i = 0; i < answerItems.replies.length && i < questionItems.length; i++) {
                     var answerItem = answerItems.replies[i];
                     var questionItem = questionItems[i];

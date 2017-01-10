@@ -69,6 +69,7 @@ namespace ProgrammerWidget {
 
         private async set(element: Element, containsAnswer: boolean) {
             var user = element.getAttribute(userNameAttribute);
+            var listHeight = element.getAttribute(listHeightAttribute);
             if (user == null || user == undefined) {
                 return;
             }
@@ -111,7 +112,7 @@ namespace ProgrammerWidget {
                     }
                     questionItems[i] = questionItem;
                 }
-                this.setItems(element, teratailUserResponse, answerItems, questionItems);
+                this.setItems(element, listHeight, teratailUserResponse, answerItems, questionItems);
             }
         }
 
@@ -216,9 +217,12 @@ namespace ProgrammerWidget {
             });
         }
 
-        private setItems(element: Element, userItem: TeratailUserResponse, answerItems: TeratailAnswerResponse, questionItems: Array<TeratailQuestionResponse>) {
+        private setItems(element: Element,listHeight:string, userItem: TeratailUserResponse, answerItems: TeratailAnswerResponse, questionItems: Array<TeratailQuestionResponse>) {
             element.addDiv(container => {
                 container.className = "programmer-widget-teratail-items-container";
+                if (listHeight != null && listHeight != undefined) {
+                    container.style.height = listHeight;
+                }
                 for (var i = 0; i < answerItems.replies.length && i < questionItems.length; i++) {
                     var answerItem = answerItems.replies[i];
                     var questionItem = questionItems[i];

@@ -174,6 +174,7 @@ namespace ProgrammerWidget {
 
         private async set(element: Element, containsActivity: boolean) {
             var user = element.getAttribute(userNameAttribute);
+            var listHeight = element.getAttribute(listHeightAttribute);
             if (user == null || user == undefined) {
                 return;
             }
@@ -196,7 +197,7 @@ namespace ProgrammerWidget {
                 var activityUrl = `https://api.github.com/users/${githubUser.login}/events/public`;
                 var activityItems: Array<GithubEvent<any>> = await this.getAsyncWithStorage(this.httpClient, activityUrl);
                 if (activityItems != null && activityItems != undefined) {
-                    this.setItems(element, activityItems);
+                    this.setItems(element, listHeight, activityItems);
                 }
             }
 
@@ -326,9 +327,12 @@ namespace ProgrammerWidget {
             });
         }
 
-        private setItems(element: Element, items: Array<GithubEvent<any>>) {
+        private setItems(element: Element, listHeight: string, items: Array<GithubEvent<any>>) {
             element.addDiv(container => {
                 container.className = "programmer-widget-github-items-container";
+                if (listHeight != null && listHeight != undefined) {
+                    container.style.height = listHeight;
+                }
                 var addHr = i => {
                     if (i != 0) {
                         container.appendChild(document.createElement("hr"));

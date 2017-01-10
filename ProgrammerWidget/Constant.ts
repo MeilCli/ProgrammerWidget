@@ -1,5 +1,6 @@
 ﻿namespace ProgrammerWidget {
     export const userNameAttribute = "target-user";
+    export const listHeightAttribute = "target-list-height";
     export const qiitaClass = "programmer-widget-qiita";
     export const qiitaWithItemsClass = "programmer-widget-qiita-with-items";
     export const teratailClass = "programmer-widget-teratail";

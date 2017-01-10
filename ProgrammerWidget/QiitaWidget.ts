@@ -52,6 +52,7 @@ namespace ProgrammerWidget {
 
         private async set(element: Element, containsItems: boolean) {
             var user = element.getAttribute(userNameAttribute);
+            var listHeight = element.getAttribute(listHeightAttribute);
             if (user == null || user == undefined) {
                 return;
             }
@@ -98,7 +99,7 @@ namespace ProgrammerWidget {
 
             this.setTags(element, tagsCountArray);
             if (containsItems) {
-                this.setItems(element, qiitaItems);
+                this.setItems(element, listHeight, qiitaItems);
             }
         }
 
@@ -196,9 +197,12 @@ namespace ProgrammerWidget {
             });
         }
 
-        private setItems(element: Element, items: Array<QiitaItem>) {
+        private setItems(element: Element, listHeight: string, items: Array<QiitaItem>) {
             element.addDiv(container => {
                 container.className = "programmer-widget-qiita-items-container";
+                if (listHeight != null && listHeight != undefined) {
+                    container.style.height = listHeight;
+                }
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
                     if (i != 0) {
