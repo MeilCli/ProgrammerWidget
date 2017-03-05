@@ -243,7 +243,7 @@ namespace ProgrammerWidget {
                 div.addA(a => {
                     a.className = "programmer-widget-follow";
                     a.href = githubUser.html_url;
-                    a.innerText = `View ${githubUser.login} on Github`;
+                    a.innerText = `View on Github`;
                 });
             });
         }
