@@ -19,7 +19,7 @@ Web Widget for Qiita, Teratail and Github
 ## RateLimit
 
 | Service | Rate Limit per Hour for IP |
-|:--|:--:|:--:|
+|:--|:--:|
 |Qiita|150|
 |Teratail|30|
 |Github|60|
